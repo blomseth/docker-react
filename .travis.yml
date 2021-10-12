@@ -1,0 +1,14 @@
+# docker running
+sudo: required
+services: 
+  - docker
+
+#build using dockerfile.dev
+before_install: 
+  - docker build -t krbl/docker-react -f Dockerfile.dev .
+
+# run tests
+script:
+  - docker run -e CI=true krbl/docker-react npm run test
+
+# deploy to AWS
